@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.dao.UserInfoMapper">
+	<resultMap type="com.example.mybatis.bean.UserInfoBean" id="userInfoMapper">
+		<result column="user_id" property="userId"/>
+		<result column="username" property="username"/>
+		<result column="age" property="age"/>
+		<result column="email" property="email"/>
+	</resultMap>
+	
+	<sql id="BASE_COLUMN">
+    	user_id,username,age,email
+    </sql>
+	<insert id="add" >
+		insert into user_info
+		(
+		<include refid="BASE_COLUMN"></include>
+		) values
+		(userId,username,age,email)
+	</insert>
+	<!--  增加稳赚商户的发卡收益  -->
+	<insert id="addBatch">
+        insert into user_info
+		(<include refid="BASE_COLUMN"></include>) values
+        <foreach collection="list" index="index" item="item" separator="," >
+            (#{item.userId},#{item.username},#{item.age}
+            ,#{item.email})
+        </foreach>
+    </insert>
+	<select id="get" resultMap="userInfoMapper">
+		select <include refid="BASE_COLUMN"/>
+		from user_info
+		where user_id=#{userId}
+	</select>
+</mapper>

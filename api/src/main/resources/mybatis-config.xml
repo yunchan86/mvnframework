@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="true" />  
+        <setting name="defaultExecutorType" value="REUSE" />  
+        <!-- 全局启用或禁用延迟加载。当禁用时，所有关联对象都会即时加载。 -->  
+        <setting name="lazyLoadingEnabled" value="true"/>  
+        <!-- 设置超时时间，它决定驱动等待一个数据库响应的时间。  -->  
+        <setting name="defaultStatementTimeout" value="25000"/>
+    </settings>
+     
+    <!--
+    <environments default="development"> 
+        <environment id="development"> 
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED"> 
+                <property name="driver" value="com.mysql.jdbc.Driver" /> 
+                <property name="url" value="jdbc:mysql://10.0.0.89:3306/yacol?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" /> 
+                <property  name="username" value="yacoltest" /> 
+                <property name="password" value="yacol.!2#" />
+            </dataSource>
+            <dataSource type="JNDI"> 
+                <property name="data_source" value="java:comp/env/kubang/mysql"/>
+            </dataSource> 
+        </environment> 
+    </environments>
+    -->
+    
+    <!--  
+    <environments default="product"> 
+        <environment id="product"> 
+            <transactionManager type="MANAGED"/>
+            <dataSource type="JNDI"> 
+                <property name="initial_contex" value="java:comp/env"/>
+                <property name="data_source" value="jdbc/mysql"/>
+            </dataSource> 
+        </environment> 
+    </environments>
+    -->
+      
+    <mappers>
+    	<!--  
+    	<mapper resource="com/example/mapper/XXXMapper.xml"/>
+    	<mapper resource="com/example/mapper/XXXMapper.xml"/>
+    	<mapper resource="com/example/mapper/XXXMapper.xml"/>
+        -->
+    </mappers>
+    
+</configuration>

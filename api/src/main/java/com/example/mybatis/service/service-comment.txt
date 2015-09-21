@@ -1,0 +1,1 @@
+1.UserInfoServiceImpl为通过Resource注解注入来调用DAO

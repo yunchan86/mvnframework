@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd    
+		http://www.springframework.org/schema/context    http://www.springframework.org/schema/context/spring-context-3.2.xsd  
+		http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-3.2.xsd"  default-autowire="byName">
+	<!-- 
+		spring+mybatis事务方式的整合
+		1.采用mybatis的包扫描方式，同时通过Resource来注解注入dao或者mapper方式到service中
+		2.采用声明式事务的通知方式来管理事务的，内设正则表达式来匹配事务的处理
+	 -->
+	
+	<!-- spring jdbc的数据源配置 -->
+	<!--  
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/hlp?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="1234"></property>
+        <property name="maxActive" value="100"></property>
+        <property name="maxIdle" value="30"></property>
+        <property name="maxWait" value="500"></property>
+        <property name="defaultAutoCommit" value="true"></property>
+    </bean>
+    -->
+    <!-- spring jndi的数据源及连接池配置 -->
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">  
+        <property name="jndiName">
+            <value>java:comp/env/test/mysql</value>  
+        </property>  
+    </bean>
+    <!-- SessionFactory的配置 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+        <!--  
+        <property name="mapperLocations" value="classpath:com/yacol/mybatis/mapper/*Mapper.xml"></property>
+        -->
+    </bean>
+    <!-- MyBatis 映射配置,如果接口和mybatis映射文件在同一路径下且命名相同,可采用自动扫描包的方式来注册各种Mapper,
+    	其中markerInterface接口的子接口都参与到这个扫描。同时在使用的时候需要注释注入来使用
+    -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    	<property name="basePackage" value="com.example.mybatis.dao"/>
+    	<!-- 
+    	<property name="markerInterface" value="com.skillmuster.cor.dao.UserMapper" />
+    	 -->
+    </bean>
+    <!-- 配置事物管理 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+  		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 声明事物通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="do*" rollback-for="Exception" read-only="false" />
+			<tx:method name="add*" rollback-for="Exception" read-only="false" />
+			<tx:method name="get*" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 声明式事物的连接点 -->
+	<aop:config>
+		<aop:pointcut id="mybatisService" expression="execution(* service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="mybatisService" />
+	</aop:config>
+	
+	<!-- service的配置 -->
+	<bean id="userInfoService" class="com.example.mybatis.service.UserInfoServiceImpl"></bean>
+</beans>
