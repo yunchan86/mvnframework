@@ -19,7 +19,7 @@ public class FacBaseData {
 		IBaseData basedata = null ;
 		if(type==CLASS_TYPE_XSTREAM_XML) basedata = new XStreamXMLData() ;
 		else if(type==CLASS_TYPE_XSTREAM_JSON) basedata = new XStreamJSONData() ;
-		else if(type==CLASS_TYPE_XSTREAM_JSON) basedata = null ;
+		else if(type==CLASS_TYPE_ORG_JSON) basedata = null ;
 		return basedata ;
 	}
 }

@@ -27,6 +27,7 @@ public class XStreamJSONData extends AbsXStream {
 		XStream xs = new XStream(new JettisonMappedXmlDriver() {
 			@Override
 			public HierarchicalStreamWriter createWriter(Writer writer) {
+				//return new JsonWriter(writer, JsonWriter.DROP_ROOT_MODE);
 				return new JsonWriter(writer, JsonWriter.DROP_ROOT_MODE);
 			}
 

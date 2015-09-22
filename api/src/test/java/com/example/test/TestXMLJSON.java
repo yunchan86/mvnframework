@@ -2,6 +2,11 @@ package com.example.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +21,7 @@ public class TestXMLJSON {
 	
 	TestUserInfo userInfo = null ;
 	BaseDataConfig config = null ;
+	List<TestUserInfo> list = null ;
 	
 	@Before
 	public void setup() {
@@ -27,6 +33,22 @@ public class TestXMLJSON {
 		userInfo.setRole(role);
 		userInfo.setTruename("CHY");
 		userInfo.setUsername("chy");
+		list = new ArrayList<TestUserInfo>() ;
+		list.add(userInfo) ;
+		list.add(userInfo) ;
+		
+		config = new BaseDataConfig() ;
+		Map<String,Class> aliasClass = new HashMap<String,Class>() ;
+		aliasClass.put("userinfo", TestUserInfo.class) ;
+		config.setAliasClass(aliasClass);
+		Map<Class,List<String>> omitField  = new HashMap<Class,List<String>>();
+		List tfieldlist = new ArrayList<String>() ;
+		tfieldlist.add("truename") ;
+		omitField.put(TestUserInfo.class, tfieldlist) ;
+		List subfieldlist = new ArrayList<String>() ;
+		subfieldlist.add("roleId") ;
+		omitField.put(TestUserRole.class, subfieldlist) ;
+		config.setOmitField(omitField);
 	}
 
 	@Test
@@ -36,9 +58,20 @@ public class TestXMLJSON {
 		System.out.println(result);
 	}
 	@Test
-	public void obj2json() {
-		String result = FacBaseData.getInstance(FacBaseData.CLASS_TYPE_XSTREAM_XML).toStr(userInfo, config) ;
+	public void obj2xmllist() {
+		assertEquals(8,8) ;
+		String result = FacBaseData.getInstance(FacBaseData.CLASS_TYPE_XSTREAM_XML).toStr(list, config) ;
 		System.out.println(result);
+	}
+	@Test
+	public void obj2json() {
+		String result = FacBaseData.getInstance(FacBaseData.CLASS_TYPE_XSTREAM_JSON).toStr(userInfo, config) ;
+		System.out.println("this result is : "+result);
+	}
+	@Test
+	public void obj2jsonlist() {
+		String result = FacBaseData.getInstance(FacBaseData.CLASS_TYPE_XSTREAM_JSON).toStr(list, config) ;
+		System.out.println("this result is : "+result);
 	}
 	
 	@After
