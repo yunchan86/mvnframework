@@ -1,5 +1,6 @@
 package com.example.util.datatype;
 
+import java.util.List;
 import java.util.Map;
 
 import com.thoughtworks.xstream.XStream;
@@ -17,6 +18,7 @@ public abstract class AbsXStream extends AbsBaseData {
 		if(this.configIsNull(config)) return ;
 		this.configAliasClass(xs,config) ;
 		this.configAliasField(xs, config);
+		configOmitField(xs,config) ;
 	}
 	/**
 	 * 类及类别名的配置
@@ -45,6 +47,18 @@ public abstract class AbsXStream extends AbsBaseData {
 			if(fieldMap==null||fieldMap.size()==0) continue ;
 			for(String field : fieldMap.keySet()) {
 				xs.aliasField(field, clazz, fieldMap.get(field)) ;
+			}
+		}
+	}
+	
+	private void configOmitField(XStream xs,BaseDataConfig config) {
+		if(this.configOmitFieldIsEmpty(config)) return ;
+		Map<Class,List<String>> omitMap = config.getOmitField() ;
+		for(Class clazz : omitMap.keySet()) {
+			List<String> fieldlist = omitMap.get(clazz) ;
+			if(fieldlist==null||fieldlist.size()==0) continue ;
+			for(String field : fieldlist) {
+				xs.omitField(clazz, field);
 			}
 		}
 	}

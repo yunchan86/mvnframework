@@ -38,5 +38,14 @@ public class TestUserInfo {
 		this.role = role;
 	}
 	
+	public String toString() {
+		return "{"
+				+ "username:"+this.username
+				+",truename:"+this.truename
+				+",age:"+this.age
+				+",address:"+this.address
+				+",role:"+this.role.toString()
+				+"}";
+	}
 	
 }

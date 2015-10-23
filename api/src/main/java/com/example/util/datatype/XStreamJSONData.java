@@ -1,8 +1,10 @@
 package com.example.util.datatype;
 
+import java.io.Reader;
 import java.io.Writer;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 import com.thoughtworks.xstream.io.json.JsonWriter;
@@ -24,14 +26,17 @@ public class XStreamJSONData extends AbsXStream {
 	}
 	
 	private XStream getXstream() {
-		XStream xs = new XStream(new JettisonMappedXmlDriver() {
+		XStream xs = new XStream(new JettisonMappedXmlDriver() /*{
 			@Override
 			public HierarchicalStreamWriter createWriter(Writer writer) {
 				//return new JsonWriter(writer, JsonWriter.DROP_ROOT_MODE);
 				return new JsonWriter(writer, JsonWriter.DROP_ROOT_MODE);
 			}
-
-		});
+			public HierarchicalStreamReader createReader(Reader reader) {
+				return null ;
+			}
+		}*/		
+		);
 		xs.setMode(XStream.NO_REFERENCES);
 		return xs;
 	}

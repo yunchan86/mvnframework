@@ -34,4 +34,14 @@ public abstract class AbsBaseData implements IBaseData {
 				||config.getAliasField().size()==0
 				) ? true : false;
 	}
+	/**
+	 * 判断显示的属性是否为空
+	 * @param config
+	 * @return
+	 */
+	protected boolean configOmitFieldIsEmpty(BaseDataConfig config) {
+		return (config==null||config.getOmitField()==null
+				||config.getOmitField().size()==0
+				) ? true : false;
+	}
 }

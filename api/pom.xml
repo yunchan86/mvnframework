@@ -3,360 +3,149 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.example</groupId>
 	<artifactId>lucence</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api Maven Lucence</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<lucence.version>5.3.0</lucence.version>
+		<struts2.version>2.3.20</struts2.version>
 	</properties>
 	
 	<dependencies>
-		<!--  Lucence  -->
+		<!--  struts2  -->
 		<dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-core</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-core</artifactId>
-           <version>3.1.0</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-analyzers-common</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-queryparser</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-test-framework</artifactId>
-           <version>${lucence.version}</version>
-           <scope>test</scope>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-queries</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-highlighter</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-analyzers</artifactId>
-           <version>3.6.2</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-memory</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-codecs</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-spatial</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-misc</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-suggest</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-grouping</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-join</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-analyzers-kuromoji</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-expressions</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-backward-codecs</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-snowball</artifactId>
-           <version>3.0.3</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-sandbox</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-analyzers-phonetic</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-spellchecker</artifactId>
-           <version>3.6.2</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-facet</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-xercesImpl</artifactId>
-           <version>3.5.0</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-analyzers-smartcn</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-icu</artifactId>
-           <version>3.6.2</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-analyzers-icu</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-smartcn</artifactId>
-           <version>3.6.2</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-analyzers-stempel</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-stempel</artifactId>
-           <version>3.6.2</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-benchmark</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-demos</artifactId>
-           <version>3.0.3</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-phonetic</artifactId>
-           <version>3.6.2</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-collation</artifactId>
-           <version>3.0.3</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-icu4j</artifactId>
-           <version>3.2.0</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-regex</artifactId>
-           <version>3.0.3</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-analyzers-morfologik</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-wikipedia</artifactId>
-           <version>3.0.3</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-kuromoji</artifactId>
-           <version>3.6.2</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-analyzers-uima</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-fast-vector-highlighter</artifactId>
-           <version>3.0.3</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-similarity</artifactId>
-           <version>2.2.0</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-pruning</artifactId>
-           <version>3.6.2</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-remote</artifactId>
-           <version>3.6.2</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-swing</artifactId>
-           <version>3.1.0</version>
+           <groupId>org.apache.struts</groupId>
+           <artifactId>struts2-core</artifactId>
+           <version>${struts2.version}</version>
        </dependency>
        <!--  
        <dependency>
-			<groupId>org.apache.lucene</groupId>
-			<artifactId>lucene-contrib</artifactId>
-			<version>3.0.3</version>
-	   </dependency>
-	   -->
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-instantiated</artifactId>
-           <version>3.6.2</version>
+           <groupId>org.apache.struts</groupId>
+           <artifactId>struts2-spring-plugin</artifactId>
+           <version>${struts2.version}</version>
        </dependency>
+       
        <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-demo</artifactId>
-           <version>${lucence.version}</version>
+           <groupId>org.apache.struts</groupId>
+           <artifactId>struts2-json-plugin</artifactId>
+           <version>${struts2.version}</version>
        </dependency>
+       
        <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-xml-query-parser</artifactId>
-           <version>3.6.2</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-wordnet</artifactId>
-           <version>3.3.0</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-surround</artifactId>
-           <version>3.0.3</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-lucli</artifactId>
-           <version>3.1.0</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-bdb-je</artifactId>
-           <version>3.1.0</version>
-           <exclusions>  
-            <exclusion>  
-                <groupId>com.sleepycat</groupId>  
-                <artifactId>berkeleydb-je</artifactId>  
-            </exclusion>  
-           </exclusions>
-       </dependency>
-        <dependency>
-			<groupId>com.sleepycat</groupId>
-			<artifactId>je</artifactId>
-			<version>5.0.73</version>
-	   </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-bdb</artifactId>
-           <version>3.1.0</version>
-           <exclusions>  
-            <exclusion>  
-                <groupId>com.sleepycat</groupId>  
-                <artifactId>berkeleydb</artifactId>  
-            </exclusion>  
-           </exclusions>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-ant</artifactId>
-           <version>3.1.0</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-classification</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-replicator</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <!--  
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-solr-grandparent</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>lucene-parent</artifactId>
-           <version>${lucence.version}</version>
-       </dependency>
-       <dependency>
-           <groupId>org.apache.lucene</groupId>
-           <artifactId>ucene-spatial3d</artifactId>
-           <version>${lucence.version}</version>
+           <groupId>org.apache.struts</groupId>
+           <artifactId>struts2-rest-plugin</artifactId>
+           <version>${struts2.version}</version>
        </dependency>
        -->
-       <!--  JSON  -->
        <dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20141113</version>
-	   </dependency>
-	   <dependency>
-			<groupId>com.thoughtworks.xstream</groupId>
-			<artifactId>xstream</artifactId>
-			<version>1.4.4</version>
-		</dependency>
+           <groupId>org.apache.struts</groupId>
+           <artifactId>struts2-dwr-plugin</artifactId>
+           <version>${struts2.version}</version>
+       </dependency>
+       <!--  
+       <dependency>
+           <groupId>org.apache.struts</groupId>
+           <artifactId>struts2-javatemplates-plugin</artifactId>
+           <version>${struts2.version}</version>
+       </dependency>
+       -->
+       <dependency>
+           <groupId>org.apache.struts</groupId>
+           <artifactId>struts2-jfreechart-plugin</artifactId>
+           <version>${struts2.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.struts</groupId>
+           <artifactId>struts2-osgi-plugin</artifactId>
+           <version>${struts2.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.struts</groupId>
+           <artifactId>struts2-tiles-plugin</artifactId>
+           <version>${struts2.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.struts</groupId>
+           <artifactId>struts2-tiles3-plugin</artifactId>
+           <version>${struts2.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.struts</groupId>
+           <artifactId>struts2-convention-plugin</artifactId>
+           <version>${struts2.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.struts</groupId>
+           <artifactId>struts2-portlet-plugin</artifactId>
+           <version>${struts2.version}</version>
+       </dependency>
+       <!--config-browser-plugin插件，使用了这个插件之后，就可以很方便的浏览项目中的所有action及其与 jsp view的映射 -->
 		<dependency>
-		    <groupId>xpp3</groupId>
-		    <artifactId>xpp3_min</artifactId>
-		    <version>1.1.4c</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jettison</groupId>
-			<artifactId>jettison</artifactId>
-			<version>1.3.7</version>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-config-browser-plugin</artifactId>
+			<version>2.3.20</version>
 		</dependency>
 		
+		<!-- 其他依赖包 -->
+		<dependency>
+             <groupId>org.freemarker</groupId>
+             <artifactId>freemarker</artifactId>
+             <version>2.3.20</version>
+        </dependency>
+        <dependency>
+             <groupId>org.apache.struts.xwork</groupId>
+             <artifactId>xwork-core</artifactId>
+             <version>${struts2.version}</version>
+        </dependency>
+        <dependency>
+             <groupId>ognl</groupId>
+             <artifactId>ognl</artifactId>
+             <version>3.0.6</version>
+         </dependency>
+ 
+         <dependency>
+             <groupId>commons-beanutils</groupId>
+             <artifactId>commons-beanutils</artifactId>
+             <version>1.8.3</version>
+         </dependency>
+ 
+         <dependency>
+             <groupId>commons-collections</groupId>
+             <artifactId>commons-collections</artifactId>
+             <version>3.2.1</version>
+         </dependency>
+ 
+         <dependency>
+             <groupId>commons-fileupload</groupId>
+             <artifactId>commons-fileupload</artifactId>
+             <version>1.3</version>
+         </dependency>
+ 
+         <dependency>
+             <groupId>commons-io</groupId>
+             <artifactId>commons-io</artifactId>
+             <version>2.2</version>
+         </dependency>
+ 
+         <dependency>
+             <groupId>org.apache.commons</groupId>
+             <artifactId>commons-lang3</artifactId>
+             <version>3.1</version>
+         </dependency>
+ 
+         <dependency>
+             <groupId>javassist</groupId>
+             <artifactId>javassist</artifactId>
+             <version>3.12.1.GA</version>
+         </dependency>
+ 
+         <!-- Servlet -->
+         <dependency>
+             <groupId>javax.servlet</groupId>
+             <artifactId>servlet-api</artifactId>
+             <version>2.5</version>
+             <scope>provided</scope>
+         </dependency>
 	</dependencies>
 	<build>
 		<finalName>api</finalName>
@@ -398,7 +187,6 @@
 				</configuration>
 			</plugin>
 			<!-- 打包为war包 -->
-			<!--  
 			<plugin>  
 			    <groupId>org.apache.maven.plugins</groupId>  
 			    <artifactId>maven-war-plugin</artifactId>  
@@ -408,7 +196,7 @@
 			    <archiveClasses>true</archiveClasses>  
 			    </configuration>  
 			</plugin>
-			-->
+			
 			<!-- findbugs plugin  -->
 			<plugin> 
 				<groupId>org.codehaus.mojo</groupId> 

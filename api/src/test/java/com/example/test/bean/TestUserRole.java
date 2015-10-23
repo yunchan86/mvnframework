@@ -23,5 +23,11 @@ public class TestUserRole {
 		this.rolename = rolename;
 	}
 	
+	public String toString() {
+		return "{"
+				+ "roleid:"+this.roleId
+				+",rolename:"+this.rolename
+				+"}";
+	}
 	
 }
