@@ -1,0 +1,39 @@
+package jvm;
+/**
+ * 
+ * @author chy
+ *	-XX:+PrintGCDetails -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=15 -Xms40M -Xmx40M -Xmn20M
+ *	Result is :
+Heap
+ PSYoungGen      total 18432K, used 10342K [0x00000007fec00000, 0x0000000800000000, 0x0000000800000000)
+  eden space 16384K, 63% used [0x00000007fec00000,0x00000007ff619bc8,0x00000007ffc00000)
+  from space 2048K, 0% used [0x00000007ffe00000,0x00000007ffe00000,0x0000000800000000)
+  to   space 2048K, 0% used [0x00000007ffc00000,0x00000007ffc00000,0x00000007ffe00000)
+ ParOldGen       total 20480K, used 8192K [0x00000007fd800000, 0x00000007fec00000, 0x00000007fec00000)
+  object space 20480K, 40% used [0x00000007fd800000,0x00000007fe000010,0x00000007fec00000)
+ PSPermGen       total 21504K, used 2633K [0x00000007f8600000, 0x00000007f9b00000, 0x00000007fd800000)
+  object space 21504K, 12% used [0x00000007f8600000,0x00000007f8892760,0x00000007f9b00000)
+  
+  System.gc()
+  
+ [GC [PSYoungGen: 10015K->960K(18432K)] 18207K->9152K(38912K), 0.0017350 secs] [Times: user=0.01 sys=0.00, real=0.00 secs] 
+[Full GC [PSYoungGen: 960K->0K(18432K)] [ParOldGen: 8192K->9056K(20480K)] 9152K->9056K(38912K) [PSPermGen: 2627K->2626K(21504K)], 0.0114120 secs] [Times: user=0.01 sys=0.01, real=0.01 secs] 
+Heap
+ PSYoungGen      total 18432K, used 333K [0x000000010c580000, 0x000000010d980000, 0x000000010d980000)
+  eden space 16384K, 2% used [0x000000010c580000,0x000000010c5d34f0,0x000000010d580000)
+  from space 2048K, 0% used [0x000000010d580000,0x000000010d580000,0x000000010d780000)
+  to   space 2048K, 0% used [0x000000010d780000,0x000000010d780000,0x000000010d980000)
+ ParOldGen       total 20480K, used 9056K [0x000000010b180000, 0x000000010c580000, 0x000000010c580000)
+  object space 20480K, 44% used [0x000000010b180000,0x000000010ba582b0,0x000000010c580000)
+ PSPermGen       total 21504K, used 2632K [0x0000000105f80000, 0x0000000107480000, 0x000000010b180000)
+  object space 21504K, 12% used [0x0000000105f80000,0x00000001062123e0,0x0000000107480000)
+ */
+public class TestHeapGC {
+	public static void main(String args[]) {
+		byte[] b1=new byte[1024*1024/2] ;
+		byte[] b2=new byte[1024*1024*8] ;
+		b2=null;
+		b2=new byte[1024*1024*8] ;
+		System.gc();
+	}
+}

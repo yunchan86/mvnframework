@@ -1,10 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-4.0.0.xsd">
-	<!-- 
-		struts2的配置
-	 -->
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.example</groupId>
+	<artifactId>lucence</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>api Maven Lucence</name>
+	<url>http://maven.apache.org</url>
 	<properties>
-		<struts2.version>2.3.24</struts2.version>
+		<struts2.version>2.3.20</struts2.version>
 	</properties>
 	
 	<dependencies>
@@ -14,32 +18,37 @@
            <artifactId>struts2-core</artifactId>
            <version>${struts2.version}</version>
        </dependency>
+       <!--  
        <dependency>
            <groupId>org.apache.struts</groupId>
            <artifactId>struts2-spring-plugin</artifactId>
            <version>${struts2.version}</version>
        </dependency>
+       
        <dependency>
            <groupId>org.apache.struts</groupId>
            <artifactId>struts2-json-plugin</artifactId>
            <version>${struts2.version}</version>
        </dependency>
+       
        <dependency>
            <groupId>org.apache.struts</groupId>
            <artifactId>struts2-rest-plugin</artifactId>
            <version>${struts2.version}</version>
        </dependency>
-       
+       -->
        <dependency>
            <groupId>org.apache.struts</groupId>
            <artifactId>struts2-dwr-plugin</artifactId>
            <version>${struts2.version}</version>
        </dependency>
+       <!--  
        <dependency>
            <groupId>org.apache.struts</groupId>
            <artifactId>struts2-javatemplates-plugin</artifactId>
            <version>${struts2.version}</version>
        </dependency>
+       -->
        <dependency>
            <groupId>org.apache.struts</groupId>
            <artifactId>struts2-jfreechart-plugin</artifactId>
@@ -138,4 +147,62 @@
              <scope>provided</scope>
          </dependency>
 	</dependencies>
+	<build>
+		<finalName>api</finalName>
+		<defaultGoal>compile</defaultGoal>
+		<plugins>  
+            <!-- compiler plugin --> 
+			<plugin> 
+				<groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-compiler-plugin</artifactId> 
+				<version>3.1</version> 
+				<configuration>
+					<source>1.7</source> 
+					<target>1.7</target> 
+					<encoding>UTF-8</encoding>
+					<!-- 
+					<compilerArguments> 
+						<bootclasspath>${java.home}\jre\lib\rt.jar</bootclasspath> 
+					</compilerArguments> 
+					 -->
+				</configuration> 
+			</plugin>
+			<!-- resources encoding --> 
+			<plugin> 
+				<groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-resources-plugin</artifactId> 
+				<version>2.4</version> 
+				<configuration> 
+					<encoding>UTF-8</encoding> 
+				</configuration> 
+			</plugin>
+			<!-- test plugin --> 
+			<plugin> 
+				<groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-surefire-plugin</artifactId> 
+				<version>2.10</version> 
+				<configuration> 
+					<forkMode>once</forkMode> 
+					<argLine>-Dfile.encoding=UTF-8</argLine>
+				</configuration>
+			</plugin>
+			<!-- 打包为war包 -->
+			<plugin>  
+			    <groupId>org.apache.maven.plugins</groupId>  
+			    <artifactId>maven-war-plugin</artifactId>  
+			    <version>2.2</version>  
+			    <configuration>  
+			        <warName>api</warName>  
+			    <archiveClasses>true</archiveClasses>  
+			    </configuration>  
+			</plugin>
+			
+			<!-- findbugs plugin  -->
+			<plugin> 
+				<groupId>org.codehaus.mojo</groupId> 
+				<artifactId>findbugs-maven-plugin</artifactId> 
+				<version>2.3.2</version> 
+			</plugin>
+        </plugins> 
+	</build>
 </project>

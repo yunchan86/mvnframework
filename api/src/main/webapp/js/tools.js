@@ -57,6 +57,19 @@ function set_item_value(obj,value,options) {
 		set_text(obj,value,options) ;
 	}
 }
+function _getvalue(mapkey,rowdata) {
+	var keyarr = mapkey.split(".");
+	var objval ;
+	for(i=0;i<keyarr.length;i++) {
+		if(i==0) objval = rowdata[keyarr[i]] ;
+		else {
+			if(typeof(objval)=='object')
+				objval = objval[keyarr[i]] ;
+			else return "" ;
+		}
+	}
+	return objval ;
+}
 /**
  * 设置行数据至html的元素中.
  * @param rowobj	html页面中的行对象，里面可以包括任何的元素，但需要赋值的对象属性必须包括vname，该值必须与map中的数据对应上，否则赋值失败。
@@ -90,8 +103,14 @@ function row_data(rowobj,map,rowdata,callbackconfig){
 		var item = jQuery(rowobj).find("[vname='"+map[i]+"']") ;
 		//console.log(jQuery(item).html()) ;
 		jQuery.each(item,function(k){
-			if(typeof(rowdata[i])!='object'&&typeof(rowdata[i])!='function')
+			var objval = _getvalue(i,rowdata) ;
+			set_item_value(item[k],objval,callbackconfig?callbackconfig[i]:null) ;//TODO
+			/*if(typeof(rowdata[i])!='object'&&typeof(rowdata[i])!='function')
 				set_item_value(item[k],rowdata[i],callbackconfig?callbackconfig[i]:null) ;//TODO
+			else if(typeof(rowdata[i])!='object') {
+				var objval = _getvalue(i,rowdata[i]) ;
+				set_item_value(item[k],objval,callbackconfig?callbackconfig[i]:null) ;//TODO
+			}*/
 		});
 	});
 }
@@ -167,6 +186,22 @@ function list_data(data,config) {
 			jQuery(rowobj).insertBefore(temlateobj) ;
 		}) ;
 	}
+}
+function pager(config,ajaxconfig,option) {
+	if(!ajaxconfig) {
+		alert("ajax config is not null.") ;
+		return ;
+	};
+	if(!ajaxconfig.url) {
+		alert("ajax url is required.") ;
+		return ;
+	}
+	if(!ajaxconfig.type) ajaxconfig.type="post" ;
+	if(!ajaxconfig.success) ajaxconfig.success=function(responseData){
+		list_data(data,config) ;
+	} ;
+	ajaxconfig.dataType="json" ;
+	jQuery.ajax(ajaxconfig);
 }
 function page_ajax(pageNum,size,url,params) {
 	jQuery.ajax({
